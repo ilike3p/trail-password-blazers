@@ -1,38 +1,33 @@
 var generateBtn = document.querySelector("#generate");
-var lowercaseChar = "abcdefghijklmnopqrstuvwxyx"
-var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-var specialChar = "!@#$%^&*()-_[{]};:~',.><?/`"
-var numberChat = "0123456789"
+var lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
+var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numberChar = "0123456789";
+var specialChar = "!@#$%^&*()_-+={}[];:'`~<,>.?/|"
 var passwordLength;
 var uppercaseCheck;
+var numberCheck;
 var specialCheck;
 
+function determineLength(){
+  passwordLength = prompt("Choose how many characters long you'd like your password to be (between 8-128 characters): ");
 
-
-function resetText(){
-  document.getElementById("password");
+    if (passwordLength<8){
+      alert("Password length must be a number between 8-128 characters");
+      determineLength();
+    }else if (passwordLength>128){
+      alert("Password length must be a number between 8-128 characters");
+      determineLength();
+    }else if (isNaN(passwordLength)){
+      alert("Password length must be a number between 8-128 characters");
+      determineLength();
+    }else{
+    alert("The next three screens will ask you what types of characters you would like to be included in your password.If you choose 'No' for all, your password will only contain lowercase letters.");
+    }
+    return passwordLength;
 }
-
-
-function determineLenght()
-passwordLength = prompt("Choose how many characters you would like in password")
-
-if (passwordLength<8){
-alert ("password length must be between 8-128 characters");
-determineLenght();
-}else if (passwordLength>128){
-  alert("Password length must be a number between 8-128 characters");
-  determineLength();
-}else if (isNaN(passwordLength)){
-  alert("Password length must be a number between 8-128 characters");
-  determineLength();
-}else{
-alert("The next three screens will ask you the types of characters you would like to be included in your password.If you choose 'No' for all, your password will only contain lowercase letters.");
-}
-return passwordLength;
 
 function determineUppercase(){
-  uppercaseCheck = prompt("Do you want to include uppercase in your password?(Yes or No)");
+  uppercaseCheck = prompt("Do you want to include uppercase letters in your password? (Yes or No)");
     uppercaseCheck = uppercaseCheck.toLowerCase();
 
     if (uppercaseCheck === null || uppercaseCheck === ""){
@@ -53,8 +48,9 @@ function determineUppercase(){
     }
     return uppercaseCheck;
 }
+
 function determineNumbers(){
-  numberCheck = prompt("Do you want to include numbers in your password?(Yes or No)");
+  numberCheck = prompt("Do you want to include numbers in your password? (Yes or No)");
     numberCheck = numberCheck.toLowerCase();
 
     if (numberCheck === null || numberCheck === ""){
@@ -75,8 +71,9 @@ function determineNumbers(){
     }
     return numberCheck;
 }
+
 function determineSpecial(){
-  specialCheck = prompt("Do you want to include special characters in your password?(Yes or No)";
+  specialCheck = prompt("Do you want to include special characters in your password? (Yes or No)");
     specialCheck = specialCheck.toLowerCase();
 
     if (specialCheck === null || specialCheck === ""){
@@ -97,7 +94,8 @@ function determineSpecial(){
     }
     return specialCheck;
 }
-function generatePassword()
+
+function generatePassword(){
   determineLength();
   console.log(passwordLength);
   determineUppercase();
@@ -107,7 +105,7 @@ function generatePassword()
   determineSpecial();
   console.log(specialCheck);
 
-  var characters = lowercaseChar;
+var characters = lowercaseChar;
 var password = "";
 if (uppercaseCheck && numberCheck && specialCheck){
   characters += uppercaseChar + numberChar + specialChar;
@@ -138,13 +136,11 @@ if (uppercaseCheck && numberCheck && specialCheck){
     password += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return password;
-
-
+}
 function writePassword() {
-  var password = generatePassword();
+  var password1 = "";
+  password1 = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  passwordText.value = password1;
 }
 generateBtn.addEventListener("click", writePassword);
