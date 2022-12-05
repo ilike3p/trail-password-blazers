@@ -4,9 +4,14 @@ var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var specialChar = "!@#$%^&*()-_[{]};:~',.><?/`"
 var numberChat = "0123456789"
 var passwordLength;
+var uppercaseCheck;
+var specialCheck;
 
 
 
+function resetText(){
+  document.getElementById("password");
+}
 
 
 function determineLenght()
@@ -48,9 +53,92 @@ function determineUppercase(){
     }
     return uppercaseCheck;
 }
+function determineNumbers(){
+  numberCheck = prompt("Do you want to include numbers in your password?(Yes or No)");
+    numberCheck = numberCheck.toLowerCase();
 
+    if (numberCheck === null || numberCheck === ""){
+      alert("Please answer Yes or No");
+      determineNumbers();
 
-// Write password to the #password input
+    }else if (numberCheck === "yes" || numberCheck ==="y"){
+      numberCheck = true;
+      return numberCheck;
+
+    }else if (numberCheck === "no" || numberCheck ==="n"){
+      numberCheck = false;
+      return numberCheck;
+    
+    }else {
+      alert("Please answer Yes or No");
+      determineNumbers();
+    }
+    return numberCheck;
+}
+function determineSpecial(){
+  specialCheck = prompt("Do you want to include special characters in your password?(Yes or No)";
+    specialCheck = specialCheck.toLowerCase();
+
+    if (specialCheck === null || specialCheck === ""){
+      alert("Please answer Yes or No");
+      determineSpecial();
+
+    }else if (specialCheck === "yes" || specialCheck ==="y"){
+      specialCheck = true;
+      return specialCheck;
+
+    }else if (specialCheck === "no" || specialCheck ==="n"){
+      specialCheck = false;
+      return specialCheck;
+    
+    }else {
+      alert("Please answer Yes or No");
+      determineSpecial();
+    }
+    return specialCheck;
+}
+function generatePassword()
+  determineLength();
+  console.log(passwordLength);
+  determineUppercase();
+  console.log(uppercaseCheck);
+  determineNumbers();
+  console.log(numberCheck);
+  determineSpecial();
+  console.log(specialCheck);
+
+  var characters = lowercaseChar;
+var password = "";
+if (uppercaseCheck && numberCheck && specialCheck){
+  characters += uppercaseChar + numberChar + specialChar;
+
+}else if (uppercaseCheck && numberCheck){
+  characters += uppercaseChar + numberChar;
+
+}else if (numberCheck && specialCheck){
+  characters += numberChar + specialChar;
+
+}else if (uppercaseCheck && specialCheck){
+  characters += uppercaseChar + specialChar;
+
+}else if (uppercaseCheck){
+  characters += uppercaseChar;
+
+}else if(numberCheck){
+  characters += numberChar;
+
+}else if (specialCheck){
+  characters += specialChar;
+
+}else{
+  characters === lowercaseChar;
+}
+
+  for(var i = 0; i < passwordLength; i++){
+    password += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return password;
+
 
 function writePassword() {
   var password = generatePassword();
@@ -59,6 +147,4 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
