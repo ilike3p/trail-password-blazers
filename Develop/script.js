@@ -21,13 +21,13 @@ function determineLength(){
       alert("Password length must be a number between 8-128 characters");
       determineLength();
     }else{
-    alert("The next three screens will ask you what types of characters you would like to be included in your password.If you choose 'No' for all, your password will only contain lowercase letters.");
+    alert("The next three screens will ask you what types of characters you would like to be included in your password.If you choose 'N' for all, your password will only contain lowercase letters.");
     }
     return passwordLength;
 }
 
 function determineUppercase(){
-  uppercaseCheck = prompt("Do you want to include uppercase letters in your password? (Yes or No)");
+  uppercaseCheck = prompt("Do you want to include uppercase letters in your password? (Y or N)");
     uppercaseCheck = uppercaseCheck.toLowerCase();
 
     if (uppercaseCheck === null || uppercaseCheck === ""){
@@ -50,7 +50,7 @@ function determineUppercase(){
 }
 
 function determineNumbers(){
-  numberCheck = prompt("Do you want to include numbers in your password? (Yes or No)");
+  numberCheck = prompt("Do you want to include numbers in your password? (Y or N)");
     numberCheck = numberCheck.toLowerCase();
 
     if (numberCheck === null || numberCheck === ""){
